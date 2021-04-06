@@ -1,11 +1,40 @@
-/**
- * This file is just a silly example to show everything working in the browser.
- * When you're ready to start on your site, clear the file. Happy hacking!
- **/
+import templateImage from './Resources/Images/template.png';
 
-import confetti from 'canvas-confetti';
+type countState = {
+  count: number;
+  increase: () => void;
+  decrease: () => void;
+  draw: () => void;
+};
 
-confetti.create(document.getElementById('canvas') as HTMLCanvasElement, {
-  resize: true,
-  useWorker: true,
-})({ particleCount: 200, spread: 200 });
+const countStore: countState = {
+  count: 0,
+  increase: () => countStore.count++,
+  decrease: () => countStore.count--,
+  draw: () =>
+    (document.getElementById('count')!.innerHTML = countStore.count.toString()),
+};
+
+const bindEvents = () => {
+  document.getElementById('increaseCount')!.addEventListener('click', () => {
+    countStore.increase();
+    countStore.draw();
+  });
+  document.getElementById('decreaseCount')!.addEventListener('click', () => {
+    countStore.decrease();
+    countStore.draw();
+  });
+};
+
+const init = () => {
+  let ImgTemplateImage = document.getElementById(
+    'templateImage',
+  )! as HTMLImageElement;
+  ImgTemplateImage.src = templateImage;
+  countStore.draw();
+  bindEvents();
+};
+
+init();
+
+export default {};
