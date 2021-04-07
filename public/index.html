@@ -17,6 +17,9 @@
       <div id="container">
         <div id="image">
           <img id="templateImage" />
+          <div id="itemImageContainer">
+            <img id="itemImage" />
+          </div>
           <span class="itemText" id="itemName">프란의 반지</span>
           <pre class="itemText" id="itemDescription">
 의적으로 명성을 날린 프란의 반지
@@ -43,6 +46,16 @@
           <div class="inputField">
             <span>설명</span>
             <textarea class="input" id="itemDescriptionInput"></textarea>
+          </div>
+
+          <div class="inputField">
+            <span>이미지</span>
+            <input
+              id="itemImageInput"
+              type="file"
+              name="이미지 선택"
+              accept="image/*"
+            />
           </div>
         </div>
       </div>

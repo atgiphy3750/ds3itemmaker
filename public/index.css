@@ -1,5 +1,6 @@
 body {
-  margin: 10px;
+  margin: 0;
+  width: 100vw;
   height: 100vh;
 }
 
@@ -11,13 +12,15 @@ body {
 }
 
 #container {
+  margin: 0 10px 0 10px;
   width: 800px;
-  height: auto;
+  height: 100%;
   display: flex;
   flex-direction: row;
 }
 
 #control {
+  width: 245.6px;
   margin-left: 10px;
 }
 
@@ -41,13 +44,27 @@ body {
 }
 
 #itemDescription {
-  top: 360px;
-  line-height: 26.5px;
+  top: 320px;
+  line-height: 26px;
 }
 
 #templateImage {
   position: absolute;
   width: 100%;
+  object-fit: contain;
+}
+
+#itemImageContainer {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  top: 120px;
+  left: 195px;
+}
+
+#itemImage {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
@@ -66,16 +83,22 @@ body {
 @media screen and (max-width: 768px) {
   #container {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: flex;
     flex-direction: column;
+  }
+
+  #image {
+    height: 115vw;
   }
 
   #control {
     width: 100%;
     margin-left: 0;
     margin-top: 10px;
+    overflow: scroll;
   }
+
   .itemText {
     left: 2vw;
     position: absolute;
@@ -92,5 +115,13 @@ body {
   #itemDescription {
     top: 56.5vw;
     line-height: 4.2vw;
+  }
+
+  #itemImageContainer {
+    position: absolute;
+    width: 35vw;
+    height: 35vw;
+    top: 10%;
+    left: 30%;
   }
 }

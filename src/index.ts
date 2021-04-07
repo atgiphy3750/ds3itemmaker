@@ -1,11 +1,14 @@
-import templateImage from './Resources/Images/template.png';
+import template from './Resources/Images/template.png';
+import placeholder from './Resources/Images/placeholder.png';
 
 type itemState = {
   name: string;
   description: string;
   setName: (name: string) => void;
   setDescription: (description: string) => void;
-  getValue: (e: any) => string;
+  setImage: (image: any) => void;
+  handleTextChanged: (e: any) => string;
+  handleFileChanged: (e: any) => Promise<string>;
 };
 
 const itemStore: itemState = {
@@ -28,27 +31,66 @@ const itemStore: itemState = {
   setDescription: (description: string) => {
     document.getElementById('itemDescription')!.innerText = description;
   },
-  getValue: (e) => {
+  setImage: (image: string) => {
+    let itemImage = document.getElementById('itemImage') as HTMLImageElement;
+    itemImage.src = image;
+  },
+  handleTextChanged: (e) => {
     return e.target.value;
+  },
+  handleFileChanged: (e) => {
+    return new Promise((resolve, reject) => {
+      if (e.target.files != null) {
+        let reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload = (e) => {
+          if (reader.result != null) {
+            let result = e.target!.result as string;
+            resolve(result);
+          }
+        };
+        reader.onerror = (e) => {
+          reject(e);
+        };
+      }
+    });
   },
 };
 
 const bindItemEvents = () => {
   document.getElementById('itemNameInput')!.addEventListener('input', (e) => {
-    itemStore.setName(itemStore.getValue(e));
+    itemStore.setName(itemStore.handleTextChanged(e));
   });
   document
     .getElementById('itemDescriptionInput')!
     .addEventListener('input', (e) => {
-      itemStore.setDescription(itemStore.getValue(e));
+      itemStore.setDescription(itemStore.handleTextChanged(e));
     });
+  document.getElementById('itemImageInput')!.addEventListener('change', (e) => {
+    itemStore
+      .handleFileChanged(e)
+      .then((image) => {
+        console.log(image);
+        itemStore.setImage(image);
+      })
+      .catch((image) => {
+        console.log(image);
+        itemStore.setImage(image);
+      });
+  });
 };
 
 const init = () => {
-  let ImgTemplateImage = document.getElementById(
+  let ImgTemplate = document.getElementById(
     'templateImage',
   )! as HTMLImageElement;
-  ImgTemplateImage.src = templateImage;
+  ImgTemplate.src = template;
+
+  let ImgPlaceholder = document.getElementById(
+    'itemImage',
+  )! as HTMLImageElement;
+  ImgPlaceholder.src = placeholder;
+
   bindItemEvents();
 };
 
