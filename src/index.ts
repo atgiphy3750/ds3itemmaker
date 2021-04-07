@@ -1,29 +1,47 @@
 import templateImage from './Resources/Images/template.png';
 
-type countState = {
-  count: number;
-  increase: () => void;
-  decrease: () => void;
-  draw: () => void;
+type itemState = {
+  name: string;
+  description: string;
+  setName: (name: string) => void;
+  setDescription: (description: string) => void;
+  getValue: (e: any) => string;
 };
 
-const countStore: countState = {
-  count: 0,
-  increase: () => countStore.count++,
-  decrease: () => countStore.count--,
-  draw: () =>
-    (document.getElementById('count')!.innerHTML = countStore.count.toString()),
+const itemStore: itemState = {
+  name: '프란의 반지',
+  description: `의적으로 명성을 날린 프란의 반지
+  장비 중량이 적을수록 공격력이 높아진다
+              
+  바람의 힘을 빌어 싸웠다고 하는 프란은
+  미력하고 가난한 자들의 영웅이다
+  그리고 그들은 이것이 지어낸 이야기라고 알고 있다
+  의적으로 명성을 날린 프란의 반지
+  장비 중량이 적을수록 공격력이 높아진다
+              
+  바람의 힘을 빌어 싸웠다고 하는 프란은
+  미력하고 가난한 자들의 영웅이다
+  그리고 그들은 이것이 지어낸 이야기라고 알고 있다`,
+  setName: (name: string) => {
+    document.getElementById('itemName')!.innerText = name;
+  },
+  setDescription: (description: string) => {
+    document.getElementById('itemDescription')!.innerText = description;
+  },
+  getValue: (e) => {
+    return e.target.value;
+  },
 };
 
-const bindEvents = () => {
-  document.getElementById('increaseCount')!.addEventListener('click', () => {
-    countStore.increase();
-    countStore.draw();
+const bindItemEvents = () => {
+  document.getElementById('itemNameInput')!.addEventListener('input', (e) => {
+    itemStore.setName(itemStore.getValue(e));
   });
-  document.getElementById('decreaseCount')!.addEventListener('click', () => {
-    countStore.decrease();
-    countStore.draw();
-  });
+  document
+    .getElementById('itemDescriptionInput')!
+    .addEventListener('input', (e) => {
+      itemStore.setDescription(itemStore.getValue(e));
+    });
 };
 
 const init = () => {
@@ -31,8 +49,7 @@ const init = () => {
     'templateImage',
   )! as HTMLImageElement;
   ImgTemplateImage.src = templateImage;
-  countStore.draw();
-  bindEvents();
+  bindItemEvents();
 };
 
 init();

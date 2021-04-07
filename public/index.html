@@ -5,19 +5,46 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="/index.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap"
+      rel="stylesheet"
+    />
     <title>Dark Souls 3 Item Maker</title>
   </head>
   <body>
-    <!--
-    <img id="img" src="/logo.svg" />
-    -->
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="app">
-      <img id="templateImage" />
-      <span id="count">Loading</span>
-      <div>
-        <button class="BtnCount" id="decreaseCount">-</button>
-        <button class="BtnCount" id="increaseCount">+</button>
+      <div id="container">
+        <div id="image">
+          <img id="templateImage" />
+          <span class="itemText" id="itemName">프란의 반지</span>
+          <pre class="itemText" id="itemDescription">
+의적으로 명성을 날린 프란의 반지
+장비 중량이 적을수록 공격력이 높아진다
+            
+바람의 힘을 빌어 싸웠다고 하는 프란은
+미력하고 가난한 자들의 영웅이다
+그리고 그들은 이것이 지어낸 이야기라고 알고 있다
+의적으로 명성을 날린 프란의 반지
+장비 중량이 적을수록 공격력이 높아진다
+            
+바람의 힘을 빌어 싸웠다고 하는 프란은
+미력하고 가난한 자들의 영웅이다
+그리고 그들은 이것이 지어낸 이야기라고 알고 있다
+          </pre>
+        </div>
+
+        <div id="control">
+          <div class="inputField">
+            <span>이름</span>
+            <input class="input" id="itemNameInput" />
+          </div>
+
+          <div class="inputField">
+            <span>설명</span>
+            <textarea class="input" id="itemDescriptionInput"></textarea>
+          </div>
+        </div>
       </div>
     </div>
     <script type="module" src="/dist/index.js"></script>

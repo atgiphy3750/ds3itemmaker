@@ -1,14 +1,96 @@
-#img {
-  display: block;
-  margin: auto;
-  height: 128px;
-  width: 128px;
-  padding: 2rem;
+body {
+  margin: 10px;
+  height: 100vh;
 }
 
-#canvas {
-  display: block;
-  margin: 2rem auto;
-  width: 540px;
-  height: 540px;
+#app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#container {
+  width: 800px;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+#control {
+  margin-left: 10px;
+}
+
+#image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.itemText {
+  left: 14px;
+  position: absolute;
+  color: gainsboro;
+  font-size: 20px;
+  font-family: '나눔명조', 'nanum myeongjo', serif;
+  background-color: transparent;
+}
+
+#itemName {
+  top: 16px;
+}
+
+#itemDescription {
+  top: 360px;
+  line-height: 26.5px;
+}
+
+#templateImage {
+  position: absolute;
+  width: 100%;
+  object-fit: contain;
+}
+
+.inputField {
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#itemDescriptionInput {
+  height: 100px;
+  resize: none;
+}
+
+@media screen and (max-width: 768px) {
+  #container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #control {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  .itemText {
+    left: 2vw;
+    position: absolute;
+    color: gainsboro;
+    font-size: 3.2vw;
+    font-family: '나눔명조', 'nanum myeongjo', serif;
+    background-color: transparent;
+  }
+
+  #itemName {
+    top: 2.4vw;
+  }
+
+  #itemDescription {
+    top: 56.5vw;
+    line-height: 4.2vw;
+  }
 }
