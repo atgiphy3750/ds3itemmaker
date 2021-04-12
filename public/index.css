@@ -1,127 +1,42 @@
 body {
   margin: 0;
-  width: 100vw;
-  height: 100vh;
+  font-family: sans-serif;
 }
 
-#app {
+#App {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
 }
 
-#container {
-  margin: 10px;
-  width: 800px;
+#Control {
+  margin-top: 10px;
+  width: 22%;
   height: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
-#control {
-  width: 245.6px;
-  margin-left: 10px;
+@media screen and (max-width: 768px) {
+  #Control {
+    width: 90%;
+  }
 }
 
-#image {
-  position: relative;
-  width: 100%;
-  height: 100%;
+#CnvImage {
+  display: none;
 }
 
-.itemText {
-  left: 14px;
-  position: absolute;
-  color: gainsboro;
-  font-size: 20px;
-  font-family: '나눔명조', 'nanum myeongjo', serif;
-  background-color: transparent;
-}
-
-#itemName {
-  top: 16px;
-}
-
-#itemDescription {
-  top: 320px;
-  line-height: 26px;
-}
-
-#templateImage {
-  position: absolute;
-  width: 100%;
-  object-fit: contain;
-}
-
-#itemImageContainer {
-  position: absolute;
-  width: 140px;
-  height: 140px;
-  top: 120px;
-  left: 195px;
-}
-
-#itemImage {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.inputField {
+.InputField {
   margin-bottom: 20px;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-#itemDescriptionInput {
-  height: 100px;
+#InpItemDesc {
+  height: 300px;
   resize: none;
-}
-
-@media screen and (max-width: 768px) {
-  #container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  #image {
-    height: 115vw;
-  }
-
-  #control {
-    width: 100%;
-    margin-left: 0;
-    margin-top: 10px;
-    overflow: scroll;
-  }
-
-  .itemText {
-    left: 2vw;
-    position: absolute;
-    color: gainsboro;
-    font-size: 3.2vw;
-    font-family: '나눔명조', 'nanum myeongjo', serif;
-    background-color: transparent;
-  }
-
-  #itemName {
-    top: 2.4vw;
-  }
-
-  #itemDescription {
-    top: 56.5vw;
-    line-height: 4.2vw;
-  }
-
-  #itemImageContainer {
-    position: absolute;
-    width: 35vw;
-    height: 35vw;
-    top: 10%;
-    left: 30%;
-  }
+  white-space: pre-wrap;
 }
