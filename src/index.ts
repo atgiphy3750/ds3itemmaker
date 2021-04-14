@@ -39,8 +39,8 @@ const toBase64 = async (file: File) => {
 };
 
 const setItem = async () => {
-  let name = getInputValue('InpItemName');
-  let description = getInputValue('InpItemDesc');
+  const name = getInputValue('InpItemName');
+  const description = getInputValue('InpItemDesc');
   itemStore.setName(name);
   itemStore.setDescription(description);
 
@@ -89,7 +89,6 @@ const createCanvas = async () => {
   const newSize = getNewSize(itemImage.width, itemImage.height, 350);
   const xOffset = (canvas.width - newSize.width) / 2;
   const yOffset = newSize.height / 2;
-
   ctx.drawImage(
     itemImage,
     xOffset,
@@ -125,14 +124,28 @@ const downloadImage = () => {
   document.body.removeChild(a);
 };
 
+const toggleButton = () => {
+  const button = document.getElementById(
+    'BtnDownloadImage',
+  ) as HTMLInputElement;
+  console.log(button.disabled);
+  button.disabled = !button.disabled;
+};
+
+const handleDownload = async () => {
+  toggleButton();
+
+  await setItem();
+  await createCanvas();
+  downloadImage();
+
+  toggleButton();
+};
+
 const bindItemEvents = () => {
   document
     .getElementById('BtnDownloadImage')!
-    .addEventListener('click', async () => {
-      await setItem();
-      await createCanvas();
-      downloadImage();
-    });
+    .addEventListener('click', handleDownload);
   document.getElementById('InpItemImage')!.addEventListener('change', () => {});
 };
 
