@@ -72,12 +72,12 @@ const createCanvas = async () => {
   const font = new FontFace('nanum', f);
   await font.load();
   // item name
-  ctx.font = `32pt "나눔명조", "nanum myeongjo"`;
+  ctx.font = '32pt nanum';
   ctx.fillStyle = 'white';
   ctx.fillText(itemStore.name, 50, 64);
 
   // item description
-  ctx.font = `32pt "나눔명조", "nanum myeongjo"`;
+  ctx.font = '32pt nanum';
   const lineHeight = 58;
   const lines = itemStore.description.split('\n');
   for (let i = 0; i < lines.length; i++) {
