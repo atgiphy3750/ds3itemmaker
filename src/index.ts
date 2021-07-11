@@ -71,6 +71,8 @@ const createCanvas = async () => {
     "url('https://cdn.jsdelivr.net/font-nanum/1.0/nanummyeongjo/v2/NanumMyeongjo-Regular.woff') format('woff')";
   const font = new FontFace('nanum', f);
   await font.load();
+  document.fonts.add(font);
+
   // item name
   ctx.font = '32pt nanum';
   ctx.fillStyle = 'white';
