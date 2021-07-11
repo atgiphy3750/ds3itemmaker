@@ -1,5 +1,4 @@
 import template from './Resources/Images/template.jpg';
-import placeholder from './Resources/Images/placeholder.png';
 
 type itemState = {
   name: string;
@@ -48,7 +47,7 @@ const setItem = async () => {
   if (image.files) {
     const file = image.files[0];
     await toBase64(file)
-      .then((image) => itemStore.setImage(image))
+      .then((img) => itemStore.setImage(img))
       .catch(() =>
         itemStore.setImage(
           'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==',
