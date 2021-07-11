@@ -40,16 +40,3 @@ body {
   resize: none;
   white-space: pre-wrap;
 }
-
-@font-face {
-  font-family: 'Nanum Gothic';
-  font-style: normal;
-  font-weight: 400;
-  src: url(//cdn.jsdelivr.net/font-nanum/1.0/nanummyeongjo/v2/NanumMyeongjo-Regular.eot);
-  src: url(//cdn.jsdelivr.net/font-nanum/1.0/nanummyeongjo/v2/NanumMyeongjo-Regular.eot?#iefix)
-      format('embedded-opentype'),
-    url(//cdn.jsdelivr.net/font-nanum/1.0/nanummyeongjo/v2/NanumMyeongjo-Regular.woff)
-      format('woff'),
-    url(//cdn.jsdelivr.net/font-nanum/1.0/nanummyeongjo/v2/NanumMyeongjo-Regular.ttf)
-      format('truetype');
-}
