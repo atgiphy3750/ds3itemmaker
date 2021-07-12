@@ -67,19 +67,21 @@ const createCanvas = async () => {
   );
   ctx.drawImage(templateImage, 0, 0);
 
+  // font loading
   const f =
     "url('https://cdn.jsdelivr.net/font-nanum/1.0/nanummyeongjo/v2/NanumMyeongjo-Regular.woff') format('woff')";
   const font = new FontFace('nanum', f);
   await font.load();
   document.fonts.add(font);
 
-  // item name
+  // set font style
   ctx.font = '32pt nanum';
-  ctx.fillStyle = 'white';
+  ctx.fillStyle = 'rgb(210, 210, 210)';
+
+  // item name
   ctx.fillText(itemStore.name, 50, 64);
 
   // item description
-  ctx.font = '32pt nanum';
   const lineHeight = 58;
   const lines = itemStore.description.split('\n');
   for (let i = 0; i < lines.length; i++) {
