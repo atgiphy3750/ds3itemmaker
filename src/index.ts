@@ -56,9 +56,68 @@ const setItem = async () => {
   }
 };
 
+type FontStyles = {
+  fontSize: string;
+  fontColor: string;
+  lineHeight: number;
+  pos: {
+    x: number;
+    y: number;
+  };
+};
+
+type Styles = {
+  [key: string]: {
+    fontUrl: string;
+    fontFamily: string;
+    name: Omit<FontStyles, 'lineHeight'>;
+    description: FontStyles;
+    img: {
+      target: number;
+      x: number;
+      y: number;
+    };
+  };
+};
+
+const styles: Styles = {
+  ds3: {
+    fontUrl:
+      'https://cdn.jsdelivr.net/font-nanum/1.0/nanummyeongjo/v2/NanumMyeongjo-Regular.woff',
+    fontFamily: 'nanum',
+    name: {
+      fontSize: '32pt',
+      fontColor: '#ffffff',
+      pos: {
+        x: 50,
+        y: 64,
+      },
+    },
+    description: {
+      fontSize: '32pt',
+      fontColor: '#ffffff',
+      lineHeight: 58,
+      pos: {
+        x: 50,
+        y: 868,
+      },
+    },
+    img: {
+      target: 350,
+      x: 0,
+      y: 300,
+    },
+  },
+};
+
 const createCanvas = async () => {
   const canvas = document.getElementById('CnvImage') as HTMLCanvasElement;
   const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+
+  const selectGame = document.getElementById('SelectGame') as HTMLSelectElement;
+  const game = selectGame.options[selectGame.selectedIndex].value;
+
+  const style = styles[game];
 
   // template Image
   const templateImage = new Image();
@@ -67,39 +126,44 @@ const createCanvas = async () => {
   );
   ctx.drawImage(templateImage, 0, 0);
 
-  // font loading
-  const f =
-    "url('https://cdn.jsdelivr.net/font-nanum/1.0/nanummyeongjo/v2/NanumMyeongjo-Regular.woff') format('woff')";
-  const font = new FontFace('nanum', f);
+  const f = `url('${style.fontUrl}') format('woff')`;
+  const font = new FontFace(style.fontFamily, f);
   await font.load();
   document.fonts.add(font);
 
-  // set font style
-  ctx.font = '32pt nanum';
-  ctx.fillStyle = 'rgb(210, 210, 210)';
-
   // item name
-  ctx.fillText(itemStore.name, 50, 64);
+  ctx.font = `${style.name.fontSize} ${style.fontFamily}`;
+  ctx.fillStyle = style.name.fontColor;
+  ctx.fillText(itemStore.name, style.name.pos.x, style.name.pos.y);
 
   // item description
-  const lineHeight = 58;
+  ctx.font = `${style.description.fontSize} ${style.fontFamily}`;
+  const lineHeight = style.description.lineHeight;
   const lines = itemStore.description.split('\n');
-  for (let i = 0; i < lines.length; i++) {
-    ctx.fillText(lines[i], 50, 868 + i * lineHeight);
-  }
+  lines.forEach((line, i) => {
+    ctx.fillText(
+      line,
+      style.description.pos.x,
+      style.description.pos.y + i * lineHeight,
+    );
+  });
 
   // item image
   const itemImage = new Image();
   await new Promise(
     (r) => ((itemImage.onload = r), (itemImage.src = itemStore.image)),
   );
-  const newSize = getNewSize(itemImage.width, itemImage.height, 350);
+  const newSize = getNewSize(
+    itemImage.width,
+    itemImage.height,
+    style.img.target,
+  );
   const xOffset = (canvas.width - newSize.width) / 2;
-  const yOffset = newSize.height / 2;
+  const yOffset = (canvas.height - newSize.height) / 2;
   ctx.drawImage(
     itemImage,
-    xOffset,
-    450 - yOffset,
+    xOffset - style.img.x,
+    yOffset - style.img.y,
     newSize.width,
     newSize.height,
   );
